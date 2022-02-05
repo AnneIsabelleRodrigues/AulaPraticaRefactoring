@@ -6,9 +6,10 @@ public class Movie {
 
   private String _title;
   private int _priceCode;
+  private int frequentRenterPoints = 0;
 
   public double getCharge(int DaysRented){
-    //determine amounts for each line
+
     double thisAmount = 0;
     switch (this.getPriceCode()) {
         case Movie.REGULAR:
@@ -25,10 +26,18 @@ public class Movie {
               thisAmount += (DaysRented - 3) * 1.5;
             break;
     }
-
     return thisAmount;
-
   }
+
+  public int getFrequentRenterPoints(int daysRented) {
+
+    if ((this.getPriceCode() == Movie.NEW_RELEASE) && daysRented > 1) frequentRenterPoints ++;
+
+    frequentRenterPoints ++;
+
+    return frequentRenterPoints;
+
+   }
 
   public Movie(String title, int priceCode) {
       _title = title;
